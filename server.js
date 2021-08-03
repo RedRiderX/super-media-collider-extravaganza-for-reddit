@@ -2,8 +2,8 @@
 var express = require('express');
 var app = express();
 var sassMiddleware = require('node-sass-middleware');
-var postcssMiddleware = require('postcss-middleware');
-var autoprefixer = require('autoprefixer');
+// var postcssMiddleware = require('postcss-middleware');
+// var autoprefixer = require('autoprefixer');
 var path = require('path');
 var src = __dirname + '/public';
 var dest = '/tmp';
@@ -14,17 +14,17 @@ app.use(sassMiddleware({
   response: false
 }));
 
-app.use(postcssMiddleware({
-  plugins: [
-    /* Plugins */
-    autoprefixer({
-      /* Options */
-    })
-  ],
-  src: function(request) {
-    return path.join(dest, request.url);
-  }
-}));
+// app.use(postcssMiddleware({
+//   plugins: [
+//     /* Plugins */
+//     autoprefixer({
+//       /* Options */
+//     })
+//   ],
+//   src: function(request) {
+//     return path.join(dest, request.url);
+//   }
+// }));
 
 
 // http://expressjs.com/en/starter/static-files.html
@@ -46,6 +46,6 @@ app.get('/about', function (request, response) {
 
 
 // listen for requests :)
-listener = app.listen(process.env.PORT, function () {
+let listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
