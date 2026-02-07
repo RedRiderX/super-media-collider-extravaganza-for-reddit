@@ -3,31 +3,37 @@
   "version": "0.1.0",
   "description": "Yet another Reddit Player",
   "private": true,
-  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "node-sass-middleware": "^0.11.0",
-    "foundation-sites": "^6.3.0",
-    "path": "^0.12.7",
-    "postcss-middleware": "^1.1.4",
-    "autoprefixer": "^10.3.0",
-    "motion-ui": "^1.2.2",
     "animate.css": "^4.1.1",
-    "postcss": "^8.3.6"
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "sass": "^1.75.0",
+    "tailwindcss": "^4.0.0",
+    "terser": "^5.46.0",
+    "vite": "^5.0.0"
   },
   "engines": {
-    "node": "14"
+    "node": ">=24.0.0"
   },
   "repository": {
     "url": "https://github.com/RedRiderX/super-media-collider-extravaganza-for-reddit"
   },
   "keywords": [
-    "node",
-    "express",
-    "foundation",
+    "vue",
+    "vite",
+    "tailwind",
     "reddit"
   ],
   "license": "MIT"

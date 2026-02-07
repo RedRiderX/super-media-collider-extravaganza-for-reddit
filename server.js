@@ -1,18 +1,34 @@
 // init project
 var express = require('express');
 var app = express();
-var sassMiddleware = require('node-sass-middleware');
-// var postcssMiddleware = require('postcss-middleware');
-// var autoprefixer = require('autoprefixer');
+var sass = require('sass');
+var fs = require('fs');
 var path = require('path');
 var src = __dirname + '/public';
 var dest = '/tmp';
 
-app.use(sassMiddleware({
-  src: src,
-  dest: dest,
-  response: false
-}));
+// Custom Sass middleware using Dart Sass (sass package)
+var sassMiddleware = function(req, res, next) {
+  if (req.url.endsWith('.css')) {
+    var scssFile = path.join(src, req.url.replace('.css', '.scss'));
+    if (fs.existsSync(scssFile)) {
+      try {
+        var result = sass.compile(scssFile);
+        var cssFile = path.join(dest, req.url);
+        var dirname = path.dirname(cssFile);
+        if (!fs.existsSync(dirname)) {
+          fs.mkdirSync(dirname, { recursive: true });
+        }
+        fs.writeFileSync(cssFile, result.css);
+      } catch (err) {
+        console.error('Sass compilation error for ' + scssFile + ':', err.message);
+      }
+    }
+  }
+  next();
+};
+
+app.use(sassMiddleware);
 
 // app.use(postcssMiddleware({
 //   plugins: [
