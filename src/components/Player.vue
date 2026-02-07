@@ -1,22 +1,12 @@
 <template>
-  <div class="flex-1 flex items-center justify-center bg-gray-950 p-4">
-    <div v-if="post.domain === 'youtube'" class="w-full max-w-3xl aspect-video">
-      <YouTubeEmbed :post="post" />
-    </div>
-    <div v-else-if="post.domain === 'imgur'" class="w-full">
-      <ImgurEmbed :post="post" />
-    </div>
-    <div v-else-if="post.domain === 'reddit'" class="w-full max-w-2xl">
-      <VideoEmbed :post="post" />
-    </div>
-    <div v-else-if="post.post_hint === 'image'" class="w-full h-full">
-      <ImageEmbed :post="post" />
-    </div>
+    <YouTubeEmbed v-if="post.domain === 'youtube'" :post="post" />
+    <ImgurEmbed v-else-if="post.domain === 'imgur'" :post="post" />
+    <VideoEmbed v-else-if="post.domain === 'reddit'" :post="post" />
+    <ImageEmbed v-else-if="post.post_hint === 'image'" :post="post" />
     <div v-else class="text-center text-gray-400">
       <p>Unsupported media type</p>
       <p class="text-sm mt-2">{{ post.domain }}</p>
     </div>
-  </div>
 </template>
 
 <script setup>

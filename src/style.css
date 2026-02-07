@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Open+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Honk:MORF@15&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Ultra&display=swap');
 
 @import "tailwindcss";
 
 @theme {
-  --color-dark-gray: #5a5a5a;
-  --color-reddit-black: #1a1a1b;
-  --color-reddit-dark: #030303;
-  --font-body: 'Open Sans', sans-serif;
-  --font-bungee: 'Bungee Shade', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Honk', sans-serif;
+  /* --font-display: 'Ultra', sans-serif; */
 }
 
 @layer components {
@@ -22,9 +20,4 @@
   .card {
     @apply bg-gray-900 border border-gray-700 rounded-lg p-4;
   }
-
-  .page {
-    @apply min-h-screen flex flex-col bg-reddit-dark text-white;
-  }
 }
-
