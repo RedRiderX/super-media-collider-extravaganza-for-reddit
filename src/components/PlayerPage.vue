@@ -37,7 +37,6 @@ import Comments from './Comments.vue'
 import { useRedditAPI } from '@/composables/useRedditAPI'
 
 const route = useRoute()
-const showAbout = ref(false)
 
 const {
     posts,
