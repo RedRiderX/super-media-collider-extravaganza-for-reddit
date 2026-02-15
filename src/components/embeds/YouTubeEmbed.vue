@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 
 const props = defineProps({
   post: {
@@ -13,6 +13,16 @@ const props = defineProps({
 })
 
 let player = null
+
+watch(() => props.post, (newPost) => {
+  if (newPost && player) {
+    const videoId = extractYouTubeId(newPost.url)
+    console.log('Extracted YouTube ID:', videoId, newPost.url)
+    if (videoId) {
+      player.loadVideoById(videoId)
+    }
+  }
+})
 
 onMounted(() => {
   // Load YouTube IFrame API if not already loaded
@@ -46,6 +56,9 @@ function extractYouTubeId(url) {
   try {
     const urlObj = new URL(url)
     if (urlObj.hostname.includes('youtube.com')) {
+      if (urlObj.pathname.includes('shorts')) {
+        return urlObj.pathname.split('/')[2]
+      }
       return urlObj.searchParams.get('v')
     } else if (urlObj.hostname.includes('youtu.be')) {
       return urlObj.pathname.slice(1)

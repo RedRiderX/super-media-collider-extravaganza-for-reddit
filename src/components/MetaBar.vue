@@ -5,7 +5,10 @@
                 <div class="flex-1">
                     <h2 class="text-xl font-semibold truncate">{{ post.title }}</h2>
                     <p class="text-sm text-gray-400">
-                        {{ post.subreddit }} · {{ post.score }} upvotes
+                        r/{{ post.subreddit }} · {{ post.score }} upvotes ·
+                        <a :href="`https://reddit.com${post.permalink}`" target="_blank" class="text-blue-400 hover:underline">
+                            permalink 🔗
+                        </a>
                     </p>
                 </div>
                 <div class="flex gap-2">
