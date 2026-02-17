@@ -4,6 +4,12 @@
 
 <script setup>
 import { onMounted, watch } from 'vue'
+import { useRedditAPI } from '@/composables/useRedditAPI'
+
+const {
+  mediaStatus,
+  queueToggle,
+} = useRedditAPI()
 
 const props = defineProps({
   post: {
@@ -20,6 +26,17 @@ watch(() => props.post, (newPost) => {
     console.log('Extracted YouTube ID:', videoId, newPost.url)
     if (videoId) {
       player.loadVideoById(videoId)
+    }
+  }
+})
+
+watch(mediaStatus, (newStatus) => {
+  // debugger
+  if (player) {
+    if (newStatus === 'playing') {
+      player.playVideo()
+    } else if (newStatus === 'paused') {
+      player.pauseVideo()
     }
   }
 })

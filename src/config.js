@@ -3,16 +3,17 @@ export const moods = [
     name: 'Videos',
     subreddits: [
       { name: 'Videos', path: 'videos' },
+      { name: 'Obscure Media', path: 'obscuremedia' },
+      { name: 'Interdimensional Cable', path: 'InterdimensionalCable' },
       { name: 'YouTube Haiku', path: 'youtubehaiku' },
-      { name: 'Unexpected', path: 'Unexpected' },
     ],
   },
   {
     name: 'Music',
     subreddits: [
       { name: 'Listen to This', path: 'listentothis' },
-      { name: 'Indie Music Discovery', path: 'indieheads' },
-      { name: 'LetsTalkMusic', path: 'LetsTalkMusic' },
+      { name: 'Electronic', path: 'electronicmusic' },
+      { name: 'Classical', path: 'classicalmusic' },
     ],
   },
   {

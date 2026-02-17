@@ -1,10 +1,6 @@
 <template>
-    <div
-        class="h-screen w-screen bg-gray-900 text-white overflow-hidden relative"
-        @mouseenter="showOverlay = true"
-        @mouseleave="showOverlay = mediaStatus.current === 'paused'"
-        @mousemove="resetOverlayTimer"
-    >
+    <div class="h-screen w-screen bg-gray-900 text-white overflow-hidden relative" @mouseenter="showOverlay = true"
+        @mouseleave="showOverlay = mediaStatus.current === 'paused'" @mousemove="resetOverlayTimer">
         <!-- Full-screen player (primary focus) -->
         <div class="w-full h-full flex items-center justify-center">
             <Player v-if="currentPost" :post="currentPost" />
@@ -12,39 +8,22 @@
 
         <!-- Overlays visible on hover/pause -->
         <transition name="fade">
-            <div v-if="showOverlay" class="absolute inset-0 pointer-events-none">
+            <div v-show="showOverlay" class="absolute inset-0 pointer-events-none">
                 <!-- Metadata overlay (center-left) -->
-                <MetaBarVariant
-                    v-if="currentPost"
-                    :post="currentPost"
-                    :playing="mediaStatus.current"
-                    @next="queueNext"
-                    @prev="queuePrev"
-                    @toggle="handleToggle"
-                    @comments="showCommentsModal = true"
-                    class="pointer-events-auto"
-                />
+                <MetaBarVariant v-if="currentPost" :post="currentPost" :playing="mediaStatus.current" @next="queueNext"
+                    @prev="queuePrev" @toggle="handleToggle" @comments="showCommentsModal = true"
+                    class="pointer-events-auto" />
             </div>
         </transition>
 
         <!-- Playlist coverflow (right side) - slides in from right -->
         <transition name="slide-in-left">
-            <PlaylistCoverflow
-                v-if="showOverlay"
-                :posts="posts"
-                :current-post="currentPost"
-                @select="loadPost"
-                @load-more="queueNext"
-                class="pointer-events-auto"
-            />
+            <PlaylistCoverflow v-show="showOverlay" :posts="posts" :current-post="currentPost" @select="loadPost"
+                @load-more="queueNext" class="pointer-events-auto" />
         </transition>
 
         <!-- Comments modal (center bottom) -->
-        <CommentsModal
-            :is-open="showCommentsModal"
-            :comments="comments"
-            @close="showCommentsModal = false"
-        />
+        <CommentsModal :is-open="showCommentsModal" :comments="comments" @close="showCommentsModal = false" />
     </div>
 </template>
 
