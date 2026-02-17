@@ -1,5 +1,5 @@
 <template>
-    <div id="youtube-player" class="w-full h-full"></div>
+  <div id="youtube-player" class="w-full h-full"></div>
 </template>
 
 <script setup>
@@ -9,7 +9,7 @@ import { useRedditStore } from '@/stores/redditStore'
 const store = useRedditStore()
 
 const mediaStatus = computed(() => store.mediaStatus.current)
-const queueToggle = () => store.queueToggle()
+const queueNext = () => store.queueNext()
 
 const props = defineProps({
   post: {
@@ -63,10 +63,35 @@ function initPlayer() {
       videoId: videoId,
       playerVars: {
         autoplay: 1,
-        controls: 1,
-        fs: 1,
+        // controls: 1,
+        controls: 0,
+        rel: 0,
+        fs: 0,
+        widget_referrer: window.location.href,
       },
+      events: {
+        // 'onReady': this.onYoutubeReady,
+        'onStateChange': onYoutubeStateChange
+      }
     })
+  }
+}
+
+function onYoutubeStateChange(event) {
+  switch (event.data) {
+    case YT.PlayerState.ENDED:
+      // console.log('done I guess?');
+      this.$emit('media-finished');
+      queueNext()
+      break;
+    case YT.PlayerState.PLAYING:
+      this.$emit('media-started');
+      mediaStatus.value = 'playing'
+      break;
+    case YT.PlayerState.PAUSED:
+      this.$emit('media-stopped');
+      mediaStatus.value = 'stopped'
+      break;
   }
 }
 
@@ -88,5 +113,4 @@ function extractYouTubeId(url) {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

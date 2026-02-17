@@ -1,6 +1,6 @@
 <template>
     <div class="h-screen w-screen bg-gray-900 text-white overflow-hidden relative" @mouseenter="showOverlay = true"
-        @mouseleave="showOverlay = mediaStatus.current === 'paused'" @mousemove="resetOverlayTimer">
+        @mouseleave="showOverlay = mediaStatus.current === 'stopped'" @mousemove="resetOverlayTimer">
         <!-- Full-screen player (primary focus) -->
         <div class="w-full h-full flex items-center justify-center">
             <Player v-if="currentPost" :post="currentPost" />
@@ -59,7 +59,8 @@ const subreddit = computed(() => route.params.subreddit)
 
 // Auto-hide overlay after 3 seconds of inactivity (when playing)
 const resetOverlayTimer = () => {
-    if (mediaStatus.current === 'playing') {
+    // debugger
+    if (mediaStatus.value.current === 'playing') {
         clearTimeout(overlayTimer.value)
         showOverlay.value = true
         overlayTimer.value = setTimeout(() => {
@@ -72,10 +73,10 @@ const resetOverlayTimer = () => {
 const handleToggle = () => {
     queueToggle()
     // Keep overlay visible when paused
-    if (mediaStatus.current !== 'paused') {
-        clearTimeout(overlayTimer.value)
-        showOverlay.value = false
-    }
+    // if (mediaStatus.current !== 'stopped') {
+    //     clearTimeout(overlayTimer.value)
+    //     showOverlay.value = false
+    // }
 }
 
 onMounted(async () => {
