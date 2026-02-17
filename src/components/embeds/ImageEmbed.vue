@@ -3,7 +3,7 @@
     v-if="imageUrl"
     :src="imageUrl"
     :alt="post.title"
-    class="max-h-96 max-w-full mx-auto object-contain"
+    class="max-h-full max-w-full mx-auto object-contain"
   />
   <div v-else class="text-center text-gray-400">
     <p>Loading image...</p>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed } from 'vue'
 
 const props = defineProps({
   post: {
@@ -20,15 +20,14 @@ const props = defineProps({
   },
 })
 
-const imageUrl = ref(null)
-
-onMounted(() => {
+const imageUrl = computed(() => {
   // For simple image URLs, just use the URL directly
   if (props.post.media && props.post.media.oembed) {
-    imageUrl.value = props.post.media.oembed.thumbnail_url
+    return props.post.media.oembed.thumbnail_url
   } else if (props.post.url && props.post.post_hint === 'image') {
-    imageUrl.value = props.post.url
+    return props.post.url
   }
+  return null
 })
 </script>
 

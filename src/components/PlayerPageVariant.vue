@@ -60,13 +60,13 @@ const subreddit = computed(() => route.params.subreddit)
 // Auto-hide overlay after 3 seconds of inactivity (when playing)
 const resetOverlayTimer = () => {
     // debugger
-    if (mediaStatus.value.current === 'playing') {
-        clearTimeout(overlayTimer.value)
-        showOverlay.value = true
-        overlayTimer.value = setTimeout(() => {
-            showOverlay.value = false
-        }, 3000)
-    }
+    // if (mediaStatus.value.current === 'playing') {
+    //     clearTimeout(overlayTimer.value)
+    //     showOverlay.value = true
+    //     overlayTimer.value = setTimeout(() => {
+    //         showOverlay.value = false
+    //     }, 3000)
+    // }
 }
 
 // Handle play toggle
