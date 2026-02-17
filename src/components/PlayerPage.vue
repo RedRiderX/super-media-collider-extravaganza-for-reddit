@@ -34,22 +34,21 @@ import Player from './Player.vue'
 import MetaBar from './MetaBar.vue'
 import Playlist from './Playlist.vue'
 import Comments from './Comments.vue'
-import { useRedditAPI } from '@/composables/useRedditAPI'
+import { useRedditStore } from '@/stores/redditStore'
 
 const route = useRoute()
+const store = useRedditStore()
 
-const {
-    posts,
-    currentPost,
-    comments,
-    mediaStatus,
-    fetchData,
-    fetchComments,
-    loadPost,
-    queueNext,
-    queuePrev,
-    queueToggle,
-} = useRedditAPI()
+const posts = computed(() => store.posts)
+const currentPost = computed(() => store.currentPost)
+const comments = computed(() => store.comments)
+const mediaStatus = computed(() => store.mediaStatus)
+const fetchData = () => store.fetchData(subreddit.value)
+const fetchComments = (post) => store.fetchComments(post)
+const loadPost = (post) => store.loadPost(post)
+const queueNext = () => store.queueNext()
+const queuePrev = () => store.queuePrev()
+const queueToggle = () => store.queueToggle()
 
 const subreddit = computed(() => route.params.subreddit)
 

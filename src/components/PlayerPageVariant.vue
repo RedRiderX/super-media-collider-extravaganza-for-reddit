@@ -34,22 +34,21 @@ import Player from './Player.vue'
 import MetaBarVariant from './MetaBarVariant.vue'
 import PlaylistCoverflow from './PlaylistCoverflow.vue'
 import CommentsModal from './CommentsModal.vue'
-import { useRedditAPI } from '@/composables/useRedditAPI'
+import { useRedditStore } from '@/stores/redditStore'
 
 const route = useRoute()
+const store = useRedditStore()
 
-const {
-    posts,
-    currentPost,
-    comments,
-    mediaStatus,
-    fetchData,
-    fetchComments,
-    loadPost,
-    queueNext,
-    queuePrev,
-    queueToggle,
-} = useRedditAPI()
+const posts = computed(() => store.posts)
+const currentPost = computed(() => store.currentPost)
+const comments = computed(() => store.comments)
+const mediaStatus = computed(() => store.mediaStatus)
+const fetchData = () => store.fetchData(subreddit.value)
+const fetchComments = (post) => store.fetchComments(post)
+const loadPost = (post) => store.loadPost(post)
+const queueNext = () => store.queueNext()
+const queuePrev = () => store.queuePrev()
+const queueToggle = () => store.queueToggle()
 
 // Local UI state
 const showOverlay = ref(false)

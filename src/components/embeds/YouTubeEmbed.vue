@@ -3,13 +3,13 @@
 </template>
 
 <script setup>
-import { onMounted, watch } from 'vue'
-import { useRedditAPI } from '@/composables/useRedditAPI'
+import { onMounted, watch, computed } from 'vue'
+import { useRedditStore } from '@/stores/redditStore'
 
-const {
-  mediaStatus,
-  queueToggle,
-} = useRedditAPI()
+const store = useRedditStore()
+
+const mediaStatus = computed(() => store.mediaStatus.current)
+const queueToggle = () => store.queueToggle()
 
 const props = defineProps({
   post: {
@@ -21,6 +21,7 @@ const props = defineProps({
 let player = null
 
 watch(() => props.post, (newPost) => {
+  // debugger
   if (newPost && player) {
     const videoId = extractYouTubeId(newPost.url)
     console.log('Extracted YouTube ID:', videoId, newPost.url)
@@ -35,7 +36,7 @@ watch(mediaStatus, (newStatus) => {
   if (player) {
     if (newStatus === 'playing') {
       player.playVideo()
-    } else if (newStatus === 'paused') {
+    } else if (newStatus === 'stopped') {
       player.pauseVideo()
     }
   }
