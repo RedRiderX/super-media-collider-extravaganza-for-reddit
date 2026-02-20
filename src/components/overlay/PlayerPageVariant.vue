@@ -30,7 +30,7 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import Player from './Player.vue'
+import Player from '../Player.vue'
 import MetaBarVariant from './MetaBarVariant.vue'
 import PlaylistCoverflow from './PlaylistCoverflow.vue'
 import CommentsModal from './CommentsModal.vue'

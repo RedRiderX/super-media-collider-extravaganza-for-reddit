@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import Comments from './Comments.vue'
+import Comments from '../classic/Comments.vue'
 
 defineProps({
     isOpen: {

@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from './components/LandingPage.vue'
-import PlayerPage from './components/PlayerPage.vue'
-import PlayerPageVariant from './components/PlayerPageVariant.vue'
+import PlayerPage from './components/classic/PlayerPage.vue'
+import { default as PlayerPageOverlay } from './components/overlay/PlayerPageVariant.vue'
+import { default as PlayerPageTV } from './components/tvguide/PlayerPage.vue'
 
 const routes = [
   {
@@ -13,8 +14,12 @@ const routes = [
     component: PlayerPage,
   },
   {
-    path: '/r/:subreddit/variant',
-    component: PlayerPageVariant,
+    path: '/r/:subreddit/overlay',
+    component: PlayerPageOverlay,
+  },
+  {
+    path: '/r/:subreddit/tv',
+    component: PlayerPageTV,
   },
 ]
 

@@ -30,7 +30,7 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import Player from './Player.vue'
+import Player from '../Player.vue'
 import MetaBar from './MetaBar.vue'
 import Playlist from './Playlist.vue'
 import Comments from './Comments.vue'
