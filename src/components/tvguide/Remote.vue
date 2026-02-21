@@ -9,14 +9,14 @@
                 </p>
             </div>
             
-            <div class="flex gap-2 flex-wrap self-center items-center justify-center">
+            <div class="flex gap-4 flex-wrap self-center items-center justify-center">
                 <div class="flex flex-col items-center gap-2 ">
                     <div class="uppercase tracking-wider text-sm text-gray-300">Prev</div>
                     <button @click="$emit('prev')" class="rubberized-button rounded-l-full text-[30px] py-4 px-6">🞀</button>
                 </div>
                 <div class="flex flex-col items-center gap-2">
                     <div class="uppercase tracking-wider text-sm text-gray-300">{{ playing === 'playing' ? 'Pause' : 'Play' }}</div>
-                    <button @click="$emit('toggle')" class="rubberized-button rounded-full text-[40px] py-4 px-6 w-[80px] h-[80px]">
+                    <button @click="$emit('toggle')" class="rubberized-button rounded-full text-[40px] leading-0 py-4 px-6 w-20 h-20">
                         {{ playing === 'playing' ? '⏸' : '▶' }}
                     </button>
                 </div>
@@ -31,12 +31,12 @@
                 <a 
                     :href="`https://reddit.com${post.permalink}`" 
                     target="_blank" 
-                    class="rubberized-button leading-0  rounded-xl">🡥</a>
+                    class="rubberized-button rounded-lg text-[20px] py-2 px-4">🡥</a>
             </div>
             
             <div class="flex flex-col items-center gap-2">
                 <div class="uppercase tracking-wider text-sm text-gray-300">Comments</div>
-                <button @click="$emit('comments')" class="rubberized-button leading-0 rounded-xl">🕮</button>
+                <button @click="$emit('comments')" class="rubberized-button rounded-lg text-[20px] py-2 px-4">🕮</button>
             </div>
         </div>
     </div>
