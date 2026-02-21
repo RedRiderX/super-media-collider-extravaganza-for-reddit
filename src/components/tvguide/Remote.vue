@@ -9,20 +9,20 @@
                 </p>
             </div>
             
-            <div class="flex gap-2 flex-wrap">
-                <div class="flex flex-col items-center gap-2">
+            <div class="flex gap-2 flex-wrap self-center items-center justify-center">
+                <div class="flex flex-col items-center gap-2 ">
                     <div class="uppercase tracking-wider text-sm text-gray-300">Prev</div>
-                    <button @click="$emit('prev')" class="rubberized-button leading-0 ">🞀</button>
+                    <button @click="$emit('prev')" class="rubberized-button rounded-l-full text-[30px] py-4 px-6">🞀</button>
                 </div>
                 <div class="flex flex-col items-center gap-2">
                     <div class="uppercase tracking-wider text-sm text-gray-300">{{ playing === 'playing' ? 'Pause' : 'Play' }}</div>
-                    <button @click="$emit('toggle')" class="rubberized-button leading-0 ">
+                    <button @click="$emit('toggle')" class="rubberized-button rounded-full text-[40px] py-4 px-6 w-[80px] h-[80px]">
                         {{ playing === 'playing' ? '⏸' : '▶' }}
                     </button>
                 </div>
                 <div class="flex flex-col items-center gap-2">
                     <div class="uppercase tracking-wider text-sm text-gray-300">Next</div>
-                    <button @click="$emit('next')" class="rubberized-button leading-0 ">🞂</button>
+                    <button @click="$emit('next')" class="rubberized-button  rounded-r-full text-[30px] py-4 px-6">🞂</button>
                 </div>
             </div>
             
@@ -31,12 +31,12 @@
                 <a 
                     :href="`https://reddit.com${post.permalink}`" 
                     target="_blank" 
-                    class="rubberized-button leading-0 ">🡥</a>
+                    class="rubberized-button leading-0  rounded-xl">🡥</a>
             </div>
             
             <div class="flex flex-col items-center gap-2">
                 <div class="uppercase tracking-wider text-sm text-gray-300">Comments</div>
-                <button @click="$emit('comments')" class="rubberized-button leading-0">🕮</button>
+                <button @click="$emit('comments')" class="rubberized-button leading-0 rounded-xl">🕮</button>
             </div>
         </div>
     </div>
