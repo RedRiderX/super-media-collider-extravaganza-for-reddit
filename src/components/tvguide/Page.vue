@@ -23,7 +23,7 @@
         </transition>
 
         <!-- Comments modal (center bottom) -->
-        <CommentsModal :is-open="showCommentsModal" :comments="comments" @close="showCommentsModal = false" />
+        <CommentsGuide :is-open="showCommentsModal" :comments="comments" @close="showCommentsModal = false" />
     </div>
 </template>
 
@@ -31,9 +31,9 @@
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Player from '../Player.vue'
-import MetaBar from './MetaBar.vue'
+import MetaBar from './Remote.vue'
 import Playlist from './Playlist.vue'
-import CommentsModal from './CommentsModal.vue'
+import CommentsGuide from './CommentsGuide.vue'
 import { useRedditStore } from '@/stores/redditStore'
 
 const route = useRoute()
@@ -56,6 +56,8 @@ const showCommentsModal = ref(false)
 const overlayTimer = ref(null)
 
 const subreddit = computed(() => route.params.subreddit)
+
+// console.log(GeistPixelSquare.variable);
 
 // Auto-hide overlay after 3 seconds of inactivity (when playing)
 const resetOverlayTimer = () => {
