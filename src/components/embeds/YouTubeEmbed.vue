@@ -5,6 +5,7 @@
 <script setup>
 import { onMounted, watch, computed } from 'vue'
 import { useRedditStore } from '@/stores/redditStore'
+const emit = defineEmits(['media-finished', 'media-started', 'media-stopped'])
 
 const store = useRedditStore()
 
@@ -81,15 +82,15 @@ function onYoutubeStateChange(event) {
   switch (event.data) {
     case YT.PlayerState.ENDED:
       // console.log('done I guess?');
-      this.$emit('media-finished');
+      emit('media-finished');
       queueNext()
       break;
     case YT.PlayerState.PLAYING:
-      this.$emit('media-started');
+      emit('media-started');
       mediaStatus.value = 'playing'
       break;
     case YT.PlayerState.PAUSED:
-      this.$emit('media-stopped');
+      emit('media-stopped');
       mediaStatus.value = 'stopped'
       break;
   }
