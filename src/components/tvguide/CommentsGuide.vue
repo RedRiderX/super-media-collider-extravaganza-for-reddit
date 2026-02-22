@@ -9,8 +9,8 @@
         <div v-if="isOpen"
             class="comment-guide open-book fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-175 max-h-3/4 text-black font-serif z-40 flex flex-col">
             <button @click="$emit('close')" class="text-2xl transition">&times;</button>
-            <h3 class="text-2xl text-center font-bold border-b border-red-400 uppercase">Comments</h3>
-            <div class="flex-1 overflow-y-auto space-y-4 p-4">
+            <h3 class="text-2xl text-center font-bold border-b border-red-400 uppercase p-4">Comments</h3>
+            <div class="flex-1 overflow-y-auto space-y-4 p-8">
                 <Comment v-if="comments.length > 0" v-for="comment in comments" :key="comment.id" :comment="comment" />
                 <div v-else class=" text-center py-8">
                     Loading comments...
@@ -38,6 +38,26 @@ defineEmits(['close'])
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.slide-in-left-enter-active,
+.slide-in-left-leave-active {
+    transition: transform 0.3s ease;
+}
+
+.slide-in-left-enter-from,
+.slide-in-left-leave-to {
+    transform: translateX(100%);
+}
+
 /* Highlight */
 /* .open-book *::-moz-selection {
     background: rgba(222,255,0,0.75);
@@ -57,7 +77,7 @@ defineEmits(['close'])
     left: 0;
     width: 100%;
     pointer-events: none;
-    height: calc(100% + 1rem);
+    height: calc(100% + 22px);
     background-image:
         linear-gradient(to right,
             rgba(0, 0, 0, 0.4) 0%,

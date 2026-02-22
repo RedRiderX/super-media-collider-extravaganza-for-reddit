@@ -34,9 +34,19 @@
                     class="rubberized-button rounded-lg text-[20px] py-2 px-4">🡥</a>
             </div>
             
-            <div class="flex flex-col items-center gap-2">
-                <div class="uppercase tracking-wider text-sm text-gray-300">Comments</div>
-                <button @click="$emit('comments')" class="rubberized-button rounded-lg text-[20px] py-2 px-4">🕮</button>
+            <div class="flex gap-4 flex-wrap self-center items-center justify-center">
+                <div class="flex flex-col items-center gap-2">
+                    <div class="uppercase tracking-wider text-sm text-gray-300">CRT Flicker</div>
+                    <button @click="$emit('toggle-crt-flicker')" :class="['rubberized-button rounded-lg text-[20px] py-2 px-4', { 'opacity-50': !crtFlickerEnabled }]">📺</button>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="uppercase tracking-wider text-sm text-gray-300">CRT Glow</div>
+                    <button @click="$emit('toggle-crt-glow')" :class="['rubberized-button rounded-lg text-[20px] py-2 px-4', { 'opacity-50': !crtGlowEnabled }]">✨</button>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <div class="uppercase tracking-wider text-sm text-gray-300">Comments</div>
+                    <button @click="$emit('comments')" class="rubberized-button rounded-lg text-[20px] py-2 px-4">🕮</button>
+                </div>
             </div>
         </div>
     </div>
@@ -52,9 +62,17 @@ defineProps({
         type: String,
         default: 'playing',
     },
+    crtFlickerEnabled: {
+        type: Boolean,
+        default: true,
+    },
+    crtGlowEnabled: {
+        type: Boolean,
+        default: true,
+    },
 })
 
-defineEmits(['next', 'prev', 'toggle', 'comments'])
+defineEmits(['next', 'prev', 'toggle', 'comments', 'toggle-crt-flicker', 'toggle-crt-glow'])
 
 // setInterval(function () {
 //   var today = new Date();
